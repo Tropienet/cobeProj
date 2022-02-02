@@ -9,14 +9,13 @@ export const Container = styled.div`
     height: 1000px;
     max-width:100%;
     margin: 0;
-    background-color: grey;
-    border: 1px solid red;
+    
 `
 
 export const PlayerContainer = styled.div`
     align-self: center;
     width: 80%;
-    border: 1px solid green;
+    
     height: 700px;
     display: grid;
     grid-template-columns: repeat(3, 33%);
@@ -26,4 +25,7 @@ export const PlayerContainer = styled.div`
 export const LoadMoreButton = styled.button`
     align-self: center;
     width: 20%;
+    border: none;
+    background-color: green;
+    color: white;
 `

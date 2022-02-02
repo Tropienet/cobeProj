@@ -5,7 +5,7 @@ import { HeaderContainer, SearchInput, Home, AddPlayerButton, SearchButton } fro
 export function App() {
     return (
         <div className='pageContainer'>
-            <HeaderContainer>
+            <HeaderContainer className='header-container'>
                 <Home className='home'>Home</Home>
                 <SearchInput placeholder='Search player' className='search-input'></SearchInput>
                 <SearchButton className='searchButton'>Search</SearchButton>
@@ -15,7 +15,7 @@ export function App() {
                 <Container className='homePage'>
                     <PlayerContainer className='pContainer'> 
                     </PlayerContainer>
-                    <LoadMoreButton>Load More</LoadMoreButton>
+                    <LoadMoreButton className="load-more">Load More</LoadMoreButton>
                 </Container>
             </div>
         </div>

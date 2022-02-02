@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM, { unmountComponentAtNode } from 'react-dom';
 import { App } from './App';
+import { createHomePage } from './loadPlayers';
+
 
 function searchPlayer() {
     const searchButton = document.querySelector('.searchButton');
@@ -11,6 +13,7 @@ function searchPlayer() {
             let player = searchInput.value;
             searchForSpecificPlayer(player);
             resetSite();
+            createBackButton();
         })
     }
 
@@ -106,8 +109,23 @@ function searchPlayer() {
         container.appendChild(playerCardContainer);
     }
 
-    
+    function createBackButton() {
+        const headerContainer = document.querySelector('.homePage');
+        const backButton = document.createElement('button');
+        backButton.textContent = "Back";
+        backButton.style.width = "80px";
+        backButton.style.alignSelf = "center";
 
+        backButton.addEventListener('click', () => {
+           createHomePage();
+           backButton.remove();
+        });
+
+        headerContainer.appendChild(backButton);
+    }
+
+    
+    
     createSearchButton();
 }
 

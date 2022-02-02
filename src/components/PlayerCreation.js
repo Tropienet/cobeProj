@@ -45,7 +45,7 @@ export function PlayerCreation() {
                             <input type='text' id='earnings'></input>
                         </label>
                         <br></br>
-
+                        
                     </form>
 
                 </PlayerCreationSite>

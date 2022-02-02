@@ -6,7 +6,7 @@ export {createHomePage};
 
 function createHomePage() {
 
-
+    let count = 0;
 
     function createPlayercard() {
         const contentful = require('contentful');
@@ -15,12 +15,15 @@ function createHomePage() {
             space: 'ojpqlra32uom',
             accessToken: 'wO9AhZ3Ig3-aFGAJ3SEj1vtKJ6DuYhvnwDHTJfsQX5w',
         });
+        count += 6;
+        
 
 
         const container = document.querySelector('.pContainer');
         
 
         client.getEntries().then(function (entries) {
+            loadMore(entries);
             entries.items.forEach(function (entry) {
                 if(entry.fields.id<=6){
                     const playerCard = document.createElement('div');
@@ -38,9 +41,8 @@ function createHomePage() {
                     
                     setPlayerCardStyle(playerCard);
                     addImageToCard(`${entry.fields.photo.fields.file.url}`, playerCard);
-                    /*addNameToCard(entry.fields.name, playerCard);
-                    addPositionToCard(entry.fields.position, playerCard);*/
                     addCountryNamePosition(playerCard, entry);
+                    
                     
                 container.appendChild(playerCard);
                 }
@@ -111,19 +113,7 @@ function createHomePage() {
 
     }
 
-    function addNameToCard(name, playerCard){
-        const playerCardName = document.createElement('p');
-        playerCardName.textContent = name;
-
-        playerCard.appendChild(playerCardName);
-    }
-
-    function addPositionToCard(position, playerCard){
-        const playerCardPosition = document.createElement('p');
-        playerCardPosition.textContent = position;
-
-        playerCard.appendChild(playerCardPosition);
-    }
+  
 
     function createDescriptionPage(entry){
         deleteHomePage();
@@ -166,6 +156,29 @@ function createHomePage() {
         });
 
         playerDescriptionPage.appendChild(backButton);
+    }
+
+    function loadMore(entries){
+        const container = document.querySelector('.pContainer');
+        const loadMoreButton = document.querySelector('.load-more');
+        
+        loadMoreButton.addEventListener('click', () => {
+            entries.items.forEach(function (entry) {
+                if (entry.fields.id>count&&entry.fields.id<count+6){
+                    const playerCard = document.createElement('div');
+                    playerCard.setAttribute('class', `${entry.fields.nickname} ${entry.fields.id}`);
+                    setPlayerCardStyle(playerCard);
+                    addImageToCard(`${entry.fields.photo.fields.file.url}`, playerCard);
+                    addCountryNamePosition(playerCard, entry);
+                    
+                    
+                    container.appendChild(playerCard);
+                }
+            });
+            count += 6;
+            loadMoreButton.remove(); 
+        });
+        
     }
     
     createPlayercard();
